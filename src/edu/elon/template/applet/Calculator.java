@@ -14,7 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Calculator extends JApplet {
+	private boolean needToClear;
 	public void init() {
+		needToClear = false;
 		ScriptEngineManager mgr = new ScriptEngineManager();
 		ScriptEngine engine = mgr.getEngineByName("JavaScript");
 		
@@ -28,39 +30,107 @@ public class Calculator extends JApplet {
 		textPanel.add(resultField, BorderLayout.NORTH);
 
 		JButton button7 = new JButton("7");
-		button7.addActionListener(e -> resultField.setText(resultField.getText() + 7));
+		button7.addActionListener(e ->{
+			if(needToClear){
+				resultField.setText("");
+			}
+			needToClear = false;
+		resultField.setText(resultField.getText() + 7);
+		
+		});
 		JButton button8 = new JButton("8");
-		button8.addActionListener(e -> resultField.setText(resultField.getText() + 8));
+		button8.addActionListener(e ->{
+			if(needToClear){
+				resultField.setText("");
+			}
+			needToClear = false;
+		resultField.setText(resultField.getText() + 8);
+		
+		});
 		JButton button9 = new JButton("9");
-		button9.addActionListener(e -> resultField.setText(resultField.getText() + 9));
+		button9.addActionListener(e ->{
+			if(needToClear){
+				resultField.setText("");
+			}
+			needToClear = false;
+		resultField.setText(resultField.getText() + 9);
+		
+		});
 		JButton buttonDivide = new JButton("/");
 		buttonDivide.addActionListener(e -> resultField.setText(resultField.getText() + "/"));
 		JButton button4 = new JButton("4");
-		button4.addActionListener(e -> resultField.setText(resultField.getText() + 4));
+		button4.addActionListener(e ->{
+			if(needToClear){
+				resultField.setText("");
+			}
+		resultField.setText(resultField.getText() + 4);
+		
+		});
 		JButton button5 = new JButton("5");
-		button5.addActionListener(e -> resultField.setText(resultField.getText() + 5));
+		button5.addActionListener(e ->{
+			if(needToClear){
+				resultField.setText("");
+			}
+			needToClear = false;
+		resultField.setText(resultField.getText() + 5);
+		
+		});
 		JButton button6 = new JButton("6");
-		button6.addActionListener(e -> resultField.setText(resultField.getText() + 6));
+		button6.addActionListener(e ->{
+			if(needToClear){
+				resultField.setText("");
+			}
+			needToClear = false;
+		resultField.setText(resultField.getText() + 6);
+		
+		});
 		JButton buttonMult = new JButton("*");
 		buttonMult.addActionListener(e -> resultField.setText(resultField.getText() + "*"));
 		JButton button1 = new JButton("1");
-		button1.addActionListener(e -> resultField.setText(resultField.getText() + 1));
+		button1.addActionListener(e ->{
+			if(needToClear){
+				resultField.setText("");
+			}
+			needToClear = false;
+		resultField.setText(resultField.getText() + 1);
+		
+		});
 		JButton button2 = new JButton("2");
-		button2.addActionListener(e -> resultField.setText(resultField.getText() + 2));
+		button2.addActionListener(e ->{
+			if(needToClear){
+				resultField.setText("");
+			}
+			needToClear = false;
+		resultField.setText(resultField.getText() + 2);
+		
+		});
 		JButton button3 = new JButton("3");
-		button3.addActionListener(e -> resultField.setText(resultField.getText() + 3));
+		button3.addActionListener(e ->{
+			if(needToClear){
+				resultField.setText("");
+			}
+			needToClear = false;
+		resultField.setText(resultField.getText() + 3);
+		
+		});
 		JButton buttonSub = new JButton("-");
 		buttonSub.addActionListener(e -> resultField.setText(resultField.getText() + "-"));
 		JButton button0 = new JButton("0");
-		button0.addActionListener(e -> resultField.setText(resultField.getText() + 0));
+		button0.addActionListener(e ->{
+			if(needToClear){
+				resultField.setText("");
+			}
+		resultField.setText(resultField.getText() + 0);
+		
+		});
 		JButton buttonDecimal = new JButton(".");
 		buttonDecimal.addActionListener(e -> resultField.setText(resultField.getText() + "."));
 		JButton buttonEquals = new JButton("=");
 		buttonEquals.addActionListener(e -> {
-			System.out.println(resultField.getText().toString());
+			needToClear = true;
 			try {
 				resultField.setText(engine.eval(resultField.getText()).toString());
-			} catch (ScriptException e1) {
+			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 		});
@@ -70,10 +140,10 @@ public class Calculator extends JApplet {
 		
 	
 		resultField.addActionListener(e -> {
-			System.out.println(resultField.getText().toString());
+			needToClear = true;
 			try {
 				resultField.setText(engine.eval(resultField.getText()).toString());
-			} catch (ScriptException e1) {
+			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 		});
@@ -100,10 +170,6 @@ public class Calculator extends JApplet {
 
 	}
 
-	public class Calculate {
-		ScriptEngineManager mgr = new ScriptEngineManager();
-		ScriptEngine engine = mgr.getEngineByName("JavaScript");
-	}
 
 	public void start() {
 
@@ -116,5 +182,8 @@ public class Calculator extends JApplet {
 	public void destroy() {
 
 	}
+
+
+	
 
 }
